@@ -1,4 +1,5 @@
 import cv2 as cv
+import numpy as np
 
 class Ass2:
     
@@ -14,10 +15,14 @@ class Ass2:
         return thre  
     
     def paint(self, img, edges):
-        fltr = cv.bilateralFilter(img, 9, 30, 700)
+        i = 1;
+        filters_array = np.array([img] * 8)
+        filters_array[0] = img
+        while(i <= 7):
+            filters_array[i] = cv.bilateralFilter(filters_array[i - 1], 9, 9, 7)
+            i += 1
         color_edges = cv.cvtColor(edges, cv.COLOR_GRAY2RGB)
-        cv.imshow("2", color_edges)
-        return cv.bitwise_and(fltr, color_edges)
+        return cv.bitwise_and(filters_array[7], color_edges)
         
         
 img = cv.imread("D:\\test.JPG")
