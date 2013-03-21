@@ -5,13 +5,17 @@ class Ass2:
     
     def noise_reduction(self, img):
         gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+        cv.imshow("2", gray)
         blur_img = cv.medianBlur(gray, 7)
+        cv.imshow("3", blur_img)
         return blur_img
     
     def edge_detection(self, img):
         edges = img.copy()
         cv.Laplacian(img, -1, edges, 5)
+        cv.imshow("5", edges)
         s, thre = cv.threshold(edges, 125, 255, cv.THRESH_BINARY_INV)
+        cv.imshow("4", thre)
         return thre  
     
     def paint(self, img, edges):
