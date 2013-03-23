@@ -5,7 +5,7 @@ import os;
 import glob;
 
 class DataGenerator:
-  
+
     def generateSwissRoll(self, n=100000, dim=3):
         phi = np.random.random_sample(n)
         t = (3 * np.pi / 2) * (1 + 2 * phi)
@@ -29,8 +29,3 @@ class DataGenerator:
                 i = i+1
         a = a/255.0
         return a
-    
-generator = DataGenerator()    
-#data = generator.generateSwissRoll(10, 3)
-data = generator.generateFacesPoints("C:\\Users\\Elrassam\\Desktop\\Faces\\")
-#print data

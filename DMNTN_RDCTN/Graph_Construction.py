@@ -1,13 +1,15 @@
 import numpy as np
+from operator import itemgetter
 from scipy.sparse import lil_matrix;
 import matplotlib.pyplot as plt
 import networkx as nx
 from DataGenerator import DataGenerator
 
+
 class GraphConstruction:
     
     def __init__(self, numOfPoints):
-        self.G = nx.Graph()
+        self.G = nx.DiGraph()
         for j in range(0,numOfPoints):
             self.G.add_node(j)
             
@@ -40,14 +42,5 @@ class GraphConstruction:
             for k in range(0,numOfPoints):
                 if(self.D[j,k]<=(Eps*Eps) and k!=j):
                     A_Eps[j,k]=1;
+                    self.G.add_edge(j,k)
                     W_Eps[j,k]=self.D[j,k];
-                
-
-dg = DataGenerator()
-a = dg.generateFacesPoints("C:\\Users\\Elrassam\\Desktop\\Faces\\")
-numOfPoints = 400
-graph_con = GraphConstruction(numOfPoints)
-graph_con.pre_construction(a, numOfPoints)
-graph_con.graph_k_neighbor(numOfPoints)
-nx.draw(graph_con.G)
-plt.show()          
