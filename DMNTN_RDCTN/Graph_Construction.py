@@ -6,6 +6,7 @@ import networkx as nx
 from DataGenerator import DataGenerator
 
 
+
 class GraphConstruction:
     
     def __init__(self, numOfPoints):
@@ -23,7 +24,7 @@ class GraphConstruction:
     def graph_k_neighbor(self, numOfPoints):
         A_K=lil_matrix((numOfPoints,numOfPoints), dtype='uint8');
         W_K=lil_matrix((numOfPoints,numOfPoints), dtype='float64');
-        for i in range(0,3):
+        for i in range(0,15):
             for j in range(0,numOfPoints):
                 minind=0;
                 minv=np.amax(self.D[j]);

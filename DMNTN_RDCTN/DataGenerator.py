@@ -21,11 +21,11 @@ class DataGenerator:
         numOfPoints = 400
         numOfDims = 92*112
         a=np.zeros((numOfPoints,numOfDims))
-        for dirname, dirnames, filenames in os.walk(path):
-            images = glob.iglob(dirname + "\\*.pgm")
+        for k in range(1,41):
+            images=glob.iglob(path + str(k) + "\\*.pgm");
             for im in images:
-                img = misc.imread(im)
-                a[i] = img.reshape((92*112))
-                i = i+1
+                img=misc.imread(im);
+                a[i]=img.reshape((92*112));
+                i=i+1;
         a = a/255.0
         return a
